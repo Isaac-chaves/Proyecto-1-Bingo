@@ -114,14 +114,22 @@ public class Carton {
     }
 
     // Marcar y desmarcar números
-    public void marcarNumero(int numero) {
-        for (int i = 0; i < FILAS; i++) {
-            for (int j = 0; j < COLUMNAS; j++) {
-                if (numeros[i][j] == numero) {
-                    marcados[i][j] = true;
+    public boolean marcarNumero(int numero) {
+    for (int fila = 0; fila < 5; fila++) {
+        for (int col = 0; col < 5; col++) {
+            // saltar la casilla libre si tu implementación usa 0 u otro valor para la casilla central
+            if (fila == 2 && col == 2) continue;
+
+            if (this.numeros[fila][col] == numero) {
+                // marca la posición
+                if (!this.marcados[fila][col]) {
+                    this.marcados[fila][col] = true;
                 }
+                return true; // se encontró y (ya) está marcado
             }
         }
+    }
+    return false; // no existe en este cartón
     }
 
     public void desmarcarNumero(int numero) {
