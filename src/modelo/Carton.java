@@ -40,7 +40,6 @@ public class Carton {
         return marcados;
     }
 
-    // inicializa matrices y marca la casilla central
     public Carton(String id) {
         this.id = id;
         this.numeros = new int[FILAS][COLUMNAS];
@@ -48,7 +47,6 @@ public class Carton {
         this.marcados[2][2] = true;
     }
 
-    // muestra el cartón en forma de matriz con números marcados
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -68,7 +66,6 @@ public class Carton {
         return sb.toString();
     }
 
-    // Llenar el cartón manualmente
     public boolean llenarManual(int[][] numerosIngresados) {
         if (numerosIngresados.length != FILAS || numerosIngresados[0].length != COLUMNAS) {
             return false;
@@ -90,7 +87,6 @@ public class Carton {
         return true;
     }
 
-    // Llenar el cartón automáticamente
     public void llenarAutomatico() {
         Random rand = new Random();
         for (int j = 0; j < COLUMNAS; j++) {
@@ -113,23 +109,20 @@ public class Carton {
         }
     }
 
-    // Marcar y desmarcar números
     public boolean marcarNumero(int numero) {
     for (int fila = 0; fila < 5; fila++) {
         for (int col = 0; col < 5; col++) {
-            // saltar la casilla libre si tu implementación usa 0 u otro valor para la casilla central
             if (fila == 2 && col == 2) continue;
 
             if (this.numeros[fila][col] == numero) {
-                // marca la posición
                 if (!this.marcados[fila][col]) {
                     this.marcados[fila][col] = true;
                 }
-                return true; // se encontró y (ya) está marcado
+                return true;
             }
         }
     }
-    return false; // no existe en este cartón
+    return false;
     }
 
     public void desmarcarNumero(int numero) {
@@ -142,7 +135,6 @@ public class Carton {
         }
     }
 
-    // Reiniciar el cartón, solo la casilla central queda marcada
     public void reiniciar() {
         for (int i = 0; i < FILAS; i++) {
             for (int j = 0; j < COLUMNAS; j++) {

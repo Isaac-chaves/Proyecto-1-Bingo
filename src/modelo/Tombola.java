@@ -8,7 +8,7 @@ import java.util.Random;
 public class Tombola {
     private final List<Integer> res;
     private final List<Integer> tir;
-    private final Random rnd = new Random();
+    private final Random ran = new Random();
 
     public Tombola() {
         res = new ArrayList<>();
@@ -16,15 +16,15 @@ public class Tombola {
         tir = new ArrayList<>();
     }
 
-    public int drawRandom() {
+    public int tiradaAleat() {
         if (res.isEmpty()) return -1;
-        int idx = rnd.nextInt(res.size());
+        int idx = ran.nextInt(res.size());
         int n = res.remove(idx);
         tir.add(n);
         return n;
     }
 
-    public boolean addManual(int n) {
+    public boolean aggManuel(int n) {
         if (n < 1 || n > 75) return false;
         if (!res.contains(n)) return false;
         res.remove(Integer.valueOf(n));
@@ -32,11 +32,11 @@ public class Tombola {
         return true;
     }
 
-    public boolean wasDrawn(int n) {
+    public boolean tiradas(int n) {
         return tir.contains(n);
     }
 
-    public void reset() {
+    public void reinicio() {
         res.clear();
         tir.clear();
         for (int i = 1; i <= 75; i++) res.add(i);
